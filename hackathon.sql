@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS hackathon_007;
 CREATE DATABASE IF NOT EXISTS hackathon_007;
 USE hackathon_007;
 
@@ -59,6 +60,8 @@ INSERT INTO Orders (order_id, customer_id, product_id, status, order_date) VALUE
 (4, 'C04', 'P05', 'Cancelled', '2025-10-04'),
 (5, 'C05', 'P01', 'Pending', '2025-10-05');
 
+SET SQL_SAFE_UPDATES = 0;
+
 UPDATE Products 
 SET stock = stock + 10, 
     price = price * 1.05 
@@ -71,6 +74,8 @@ WHERE customer_id = 'C03';
 DELETE FROM Orders 
 WHERE status = 'Completed' 
   AND order_date < '2025-10-03';
+
+SET SQL_SAFE_UPDATES = 1;
 
 SELECT product_id, product_name, price 
 FROM Products 
